@@ -23,15 +23,21 @@ For detailed instructions see:
 
 2. **Set up environment variables**
 
+   Create a `.env` file in the project root (it is git-ignored; never commit it):
+
    ```bash
-   npx hardhat vars set PRIVATE_KEY
+   # Private key (0x-prefixed) of the account used for anvil / sepolia
+   PRIVATE_KEY=<your-private-key>
 
-   # Set your Infura API key for network access
-   npx hardhat vars set INFURA_API_KEY
+   # Infura API key for network access
+   INFURA_API_KEY=<your-infura-api-key>
 
-   # Optional: Set Etherscan API key for contract verification
-   npx hardhat vars set ETHERSCAN_API_KEY
+   # Optional: Etherscan API key for contract verification
+   ETHERSCAN_API_KEY=<your-etherscan-api-key>
    ```
+
+   Shell environment variables take precedence over `.env`. `npx hardhat vars set <NAME>` is still supported as a
+   fallback.
 
 3. **Compile and test**
 
