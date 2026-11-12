@@ -34,7 +34,7 @@ CI (`.github/workflows/main.yml`) still uses `npm ci` and runs: `compile` → `b
 - `publicHoistPattern = ["@fhevm/*"]` is required because `@fhevm/hardhat-plugin` resolves the transitive `@fhevm/host-contracts` from the project root.
 - `@zama-fhe/relayer-sdk` is pinned to exactly `0.4.1` in `package.json`: the plugin rejects any other version.
 
-Config/secrets use Hardhat vars, never files: `npx hardhat vars set MNEMONIC | INFURA_API_KEY | ETHERSCAN_API_KEY`. Defaults are a public test mnemonic and a dummy key.
+Config/secrets use Hardhat vars, never files: `npx hardhat vars set PRIVATE_KEY | INFURA_API_KEY | ETHERSCAN_API_KEY`. `PRIVATE_KEY` (0x-prefixed) is used by `anvil` and `sepolia` only, as a single account; the in-process `hardhat` network keeps a hardcoded public test mnemonic because tests need several signers (deployer/alice/bob). Defaults are the public account #0 test key and a dummy Infura key.
 
 ## Architecture
 

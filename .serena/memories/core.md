@@ -11,7 +11,7 @@ Zama FHEVM Hardhat template (forked from zama-ai/fhevm-hardhat-template v0.4.1).
 
 ## Invariants
 - Solidity code: FHE ops via `@fhevm/solidity` `FHE` lib; always `FHE.allowThis` + `FHE.allow(handle, user)` after mutating an encrypted state value
-- Secrets via `npx hardhat vars set MNEMONIC|INFURA_API_KEY|ETHERSCAN_API_KEY` (never in files)
+- Secrets via `npx hardhat vars set PRIVATE_KEY|INFURA_API_KEY|ETHERSCAN_API_KEY` (never in files)
 - Local chainId 31337; Sepolia 11155111 via Infura
 - Stack/versions: `mem:tech_stack`; commands: `mem:suggested_commands`; style: `mem:conventions`; done-checklist: `mem:task_completion`
 - The Zama FHEVM skill (`zama-fhevm`) exists for FHE-specific guidance

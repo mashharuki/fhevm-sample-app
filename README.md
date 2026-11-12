@@ -24,7 +24,7 @@ For detailed instructions see:
 2. **Set up environment variables**
 
    ```bash
-   npx hardhat vars set MNEMONIC
+   npx hardhat vars set PRIVATE_KEY
 
    # Set your Infura API key for network access
    npx hardhat vars set INFURA_API_KEY
