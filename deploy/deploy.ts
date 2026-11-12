@@ -1,10 +1,15 @@
 import { DeployFunction } from "hardhat-deploy/types";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
+/**
+ * デプロイメソッド
+ * @param hre
+ */
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
+  // コントラクトをデプロイする
   const deployedFHECounter = await deploy("FHECounter", {
     from: deployer,
     log: true,

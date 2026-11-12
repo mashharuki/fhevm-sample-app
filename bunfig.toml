@@ -1,0 +1,4 @@
+[install]
+linker = "isolated"
+# Hardhat plugins resolve transitive packages (e.g. @fhevm/host-contracts, zksync-web3 peer ethers v5) from the project root
+publicHoistPattern = ["@fhevm/*"]

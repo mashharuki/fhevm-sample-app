@@ -10,21 +10,29 @@ Hardhat 2.x template (forked from `zama-ai/fhevm-hardhat-template`) for Solidity
 
 ## Commands
 
+Package manager is **bun** (`bun.lock`, `bunfig.toml`). Install with `bun install`; run scripts with `bun run <script>`. Hardhat itself still runs on Node (scripts call the `hardhat` bin), bun is only the installer/script runner.
+
 ```bash
-npm run compile          # hardhat compile; postcompile regenerates typechain into ./types
-npm test                 # hardhat test (in-process mock FHEVM)
-npx hardhat test test/FHECounter.ts            # single file
-npx hardhat test --grep "increment"            # single test by name
-npm run test:sepolia     # FHECounterSepolia.ts; needs a prior `deploy:sepolia`
-npm run coverage         # solidity-coverage + typechain
-npm run lint             # solhint (0 warnings) + eslint + prettier --check
-npm run prettier:write   # auto-format .sol/.ts/.md/.json/.yml
-npm run build:ts         # tsc type-check (CI runs it)
-npm run clean            # removes artifacts/cache/types/fhevmTemp, then regenerates typechain
-npm run chain            # local node; then `npm run deploy:localhost`
+bun run compile          # hardhat compile; postcompile regenerates typechain into ./types
+bun run test             # hardhat test (in-process mock FHEVM)
+bunx hardhat test test/FHECounter.ts           # single file
+bunx hardhat test --grep "increment"           # single test by name
+bun run test:sepolia     # FHECounterSepolia.ts; needs a prior `deploy:sepolia`
+bun run coverage         # solidity-coverage + typechain
+bun run lint             # solhint (0 warnings) + eslint + prettier --check
+bun run prettier:write   # auto-format .sol/.ts/.md/.json/.yml
+bun run build:ts         # tsc type-check (CI runs it)
+bun run clean            # removes artifacts/cache/types/fhevmTemp, then regenerates typechain
+bun run chain            # local node; then `bun run deploy:localhost`
 ```
 
-CI (`.github/workflows/main.yml`) runs: `compile` → `build:ts` → `test` → `coverage` (plus `prettier:check` and `lint` on the full job). Match that order before finishing.
+CI (`.github/workflows/main.yml`) still uses `npm ci` and runs: `compile` → `build:ts` → `test` → `coverage` (plus `prettier:check` and `lint` on the full job). Match that order before finishing.
+
+### bun-specific constraints (don't undo)
+
+- `bunfig.toml` sets `linker = "isolated"`. The default hoisted linker makes `zksync-web3` (via hardhat-deploy) pick up root ethers v6 instead of v5 and crash with `Cannot read properties of undefined (reading 'JsonRpcSigner')`.
+- `publicHoistPattern = ["@fhevm/*"]` is required because `@fhevm/hardhat-plugin` resolves the transitive `@fhevm/host-contracts` from the project root.
+- `@zama-fhe/relayer-sdk` is pinned to exactly `0.4.1` in `package.json`: the plugin rejects any other version.
 
 Config/secrets use Hardhat vars, never files: `npx hardhat vars set MNEMONIC | INFURA_API_KEY | ETHERSCAN_API_KEY`. Defaults are a public test mnemonic and a dummy key.
 

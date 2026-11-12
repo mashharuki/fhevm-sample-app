@@ -23,3 +23,11 @@ coverage.json
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+
+# agent / tooling config (not project source)
+.agents
+.claude
+.serena
+.codegraph
+CLAUDE.md
+bun.lock

@@ -11,14 +11,14 @@ For detailed instructions see:
 ### Prerequisites
 
 - **Node.js**: Version 20 or higher
-- **npm or yarn/pnpm**: Package manager
+- **bun**: Package manager (v1.3+)
 
 ### Installation
 
 1. **Install dependencies**
 
    ```bash
-   npm install
+   bun install
    ```
 
 2. **Set up environment variables**
@@ -36,8 +36,8 @@ For detailed instructions see:
 3. **Compile and test**
 
    ```bash
-   npm run compile
-   npm run test
+   bun run compile
+   bun run test
    ```
 
 4. **Deploy to local network**
